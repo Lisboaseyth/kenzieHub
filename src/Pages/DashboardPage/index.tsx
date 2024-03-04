@@ -24,8 +24,10 @@ export const DashboardPage = () => {
           <Text fontSize={'22px'} fontWeight={700} color={'#00baff'}>{user.name}</Text>
           <Text fontSize={'18px'} fontWeight={300} color={'#00baff'}>{user.course_module}</Text>
         </Flex>
-        <ListTech />
-        <ListWork />
+        <Flex direction={['column', 'column', 'column', 'row']} w={'100%'} justifyContent={'space-between'} gap={10}>
+          <ListTech />
+          <ListWork />
+        </Flex>
         <MobileNav />
       </Flex >
     </>

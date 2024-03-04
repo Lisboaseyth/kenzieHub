@@ -37,11 +37,11 @@ export const ListTech = () => {
   return (
     <>
       <Flex w={'100%'} direction={'column'} bg={'white'} borderRadius={10}>
-        <Flex w={'100%'} padding={['15px 25px', '30px']} boxShadow={"1.95px 1.95px 2.6px rgba(0, 0, 0, 0.15)"} alignItems={'center'} justifyContent={'space-between'}>
+        <Flex padding={['15px 25px', '30px']} boxShadow={"1.95px 1.95px 2.6px rgba(0, 0, 0, 0.15)"} alignItems={'center'} justifyContent={'space-between'}>
           <Text color={'#00baff'}>Tecnologias</Text>
           <Button bg={'#212529'} color={'#00baff'} onClick={() => setIsModalOpen(true)} transition="background 0.3s ease-out" _hover={{ bg: '#3E454D', color: 'white' }}>+</Button>
         </Flex>
-        <Flex h={'630px'} direction={'column'} gap={2} overflow={'auto'} padding={['10px', '30px']}>
+        <Flex h={'300px'} direction={'column'} gap={2} overflow={'auto'} padding={['10px', '30px']}>
           {techs.length > 0 ? (
             techs.map((item: Tech, index: number) => (
               <CardTech title={item.title} status={item.status} id={item.id} key={index} />

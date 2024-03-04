@@ -41,7 +41,7 @@ export const ListWork = () => {
           <Text color={'#00baff'}>Trabalhos</Text>
           <Button bg={'#212529'} color={'#00baff'} onClick={() => setIsModalOpen(true)} transition="background 0.3s ease-out" _hover={{ bg: '#3E454D', color: 'white' }}>+</Button>
         </Flex>
-        <Flex h={'630px'} direction={'column'} gap={2} overflow={'auto'} p={'0 5px'} bg={'white'} padding={['10px', '30px']}>
+        <Flex h={'300px'} direction={'column'} gap={2} overflow={'auto'} p={'0 5px'} bg={'white'} padding={['10px', '30px']}>
           {works.length > 0 ? (
             works.map((item: Work, index: number) => (
               <CardWork title={item.title} deploy_url={item.deploy_url} description={item.description} id={item.id} key={index} />
