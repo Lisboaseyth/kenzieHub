@@ -3,6 +3,7 @@ import { LoginPage } from '../Pages/LoginPage'
 import { RegisterPage } from '../Pages/RegisterPage'
 import { DashboardPage } from '../Pages/DashboardPage'
 import { ProtectedRoutes } from './protectedRoutes'
+import { ProfilePage } from '../Pages/ProfilePage'
 
 export const RoutesPages = () => {
   return (
@@ -11,6 +12,7 @@ export const RoutesPages = () => {
       <Route path="/register" element={<RegisterPage />} />
       <Route element={<ProtectedRoutes />}>
         <Route path="/dashboard" element={<DashboardPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Route>
     </Routes>
   )

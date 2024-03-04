@@ -1,5 +1,5 @@
-import { createContext, useEffect, useState } from 'react'
-import { Tech, User, UserTypes, Work, iUserProvider } from '../Types'
+import { createContext, useState } from 'react'
+import { Tech, TechUpdate, User, UserTypes, UserUpdate, Work, WorkUpdate, iUserProvider } from '../Types'
 import { api } from '../Service'
 import { useToast } from '@chakra-ui/react'
 
@@ -31,7 +31,19 @@ export const UserProvider = ({ children }: iUserProvider) => {
     } catch (err) {
       console.log(err);
     }
+  }
 
+  const handleUpdateUser = async (data: UserUpdate) => {
+    try {
+      const resp = await api.put('/profile ', data, {
+        headers: {
+          Authorization: `Bearer ${localStorage.getItem('@hub:token')}`
+        }
+      });
+      setUsers(resp.data);
+    } catch (err) {
+      console.log(err);
+    }
   }
 
   const handleCreateTech = async (data: Tech) => {
@@ -41,6 +53,62 @@ export const UserProvider = ({ children }: iUserProvider) => {
       }
     })
       .then(() => {
+        toast({
+          title: 'Tecnologia adicionada com sucesso',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+        handleGetUser();
+      })
+      .catch((error) => {
+        toast({
+          title: error.response.data.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      });
+  }
+
+  const handleUpdateTech = async (data: TechUpdate, idTech: string) => {
+    api.put(`users/techs/${idTech}`, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('@hub:token')}`
+      }
+    })
+      .then(() => {
+        toast({
+          title: 'Tecnologia atualizada com sucesso',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+        handleGetUser();
+      })
+      .catch((error) => {
+        toast({
+          title: error.response.data.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      });
+  }
+
+  const handleDeleteTech = async (id: string) => {
+    api.delete(`/users/techs/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('@hub:token')}`
+      }
+    })
+      .then(() => {
+        toast({
+          title: 'Tecnologia excluida com sucesso',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
         handleGetUser();
       })
       .catch((error) => {
@@ -54,12 +122,68 @@ export const UserProvider = ({ children }: iUserProvider) => {
   }
 
   const handleCreateWork = async (data: Work) => {
-    api.post('/users/techs', data, {
+    api.post('/users/works', data, {
       headers: {
         Authorization: `Bearer ${localStorage.getItem('@hub:token')}`
       }
     })
       .then(() => {
+        toast({
+          title: 'Trabalho criado com sucesso',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+        handleGetUser();
+      })
+      .catch((error) => {
+        toast({
+          title: error.response.data.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      });
+  }
+
+  const handleUpdateWork = async (data: WorkUpdate, idWork: string) => {
+    api.put(`users/works/${idWork}`, data, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('@hub:token')}`
+      }
+    })
+      .then(() => {
+        toast({
+          title: 'Trabalho atualizado com sucesso',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
+        handleGetUser();
+      })
+      .catch((error) => {
+        toast({
+          title: error.response.data.message,
+          status: 'error',
+          duration: 5000,
+          isClosable: true,
+        });
+      });
+  }
+
+  const handleDeleteWork = async (id: string) => {
+    api.delete(`/users/works/${id}`, {
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem('@hub:token')}`
+      }
+    })
+      .then(() => {
+        toast({
+          title: 'Projeto excluido com sucesso',
+          status: 'success',
+          duration: 5000,
+          isClosable: true,
+        });
         handleGetUser();
       })
       .catch((error) => {
@@ -77,8 +201,13 @@ export const UserProvider = ({ children }: iUserProvider) => {
     users,
     handleGetUser,
     handleGetUsers,
+    handleUpdateUser,
     handleCreateTech,
-    handleCreateWork
+    handleUpdateTech,
+    handleDeleteTech,
+    handleCreateWork,
+    handleUpdateWork,
+    handleDeleteWork,
   }
 
   return (

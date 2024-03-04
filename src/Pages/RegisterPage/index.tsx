@@ -11,6 +11,7 @@ import {
   Text,
   VStack,
   Select,
+  Image,
 } from "@chakra-ui/react";
 import { useContext, useState } from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -19,6 +20,7 @@ import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { BiLogIn } from "react-icons/bi";
 import { DataRegister } from "../../Types";
 import { AuthContext } from "../../Contexts/AuthContext";
+import Back from "../../assets/bg.jpg"
 
 export const RegisterPage = () => {
 
@@ -36,23 +38,24 @@ export const RegisterPage = () => {
   const handleRegister = (data: DataRegister) => {
     // Implementar lógica de login aqui
     registerUser(data)
-    console.log("Dados do formulário:", data);
+
   };
 
   return (
     <VStack w={'100vw'} h={'100vh'} display={'flex'} overflow={'auto'}>
-      <Box textAlign={'center'} p={6} maxWidth="400px" mx="auto" bg={'#212529'} w={'70%'} borderRadius={10} margin={5}>
-        <Text color={'blue'} fontSize={'2rem'}>
+      <Image src={Back} zIndex={-1} position={'absolute'} />
+      <Box textAlign={'center'} p={6} maxWidth="400px" mx="auto" bg={'white'} boxShadow={"0 9px 20px 5px rgba(0, 0, 0, 0.1)"} w={'70%'} borderRadius={10}>
+        <Text color={'#00baff'} fontSize={'2rem'}>
           Kenzie Hub
         </Text>
         <form style={{ alignItems: 'center', justifyContent: 'center', display: 'flex', flexDirection: 'column' }} onSubmit={handleSubmit(handleRegister)}>
-          <Text color={'white'} fontSize={'1.5rem'}>
+          <Text color={'#00baff'} fontSize={'1.5rem'}>
             Registro
           </Text>
           <FormControl mb={4}>
-            <FormLabel color={'white'}>Nome</FormLabel>
+            <FormLabel color={'#00baff'}>Nome</FormLabel>
             <Input
-              color={'white'}
+              color={'#00baff'}
               placeholder="Seu Nome"
               {...register("name")}
             />
@@ -60,9 +63,9 @@ export const RegisterPage = () => {
           </FormControl>
 
           <FormControl mb={4}>
-            <FormLabel color={'white'}>Email</FormLabel>
+            <FormLabel color={'#00baff'}>Email</FormLabel>
             <Input
-              color={'white'}
+              color={'#00baff'}
               type="email"
               placeholder="Seu email"
               {...register("email")}
@@ -71,10 +74,10 @@ export const RegisterPage = () => {
           </FormControl>
 
           <FormControl mb={4}>
-            <FormLabel color={'white'}>Senha</FormLabel>
+            <FormLabel color={'#00baff'}>Senha</FormLabel>
             <InputGroup size="md">
               <Input
-                color={'white'}
+                color={'#00baff'}
                 pr="4.5rem"
                 type={showPassword ? "text" : "password"}
                 placeholder="Sua senha"
@@ -85,7 +88,7 @@ export const RegisterPage = () => {
                   h="1.75rem"
                   size="md"
                   onClick={handlePasswordVisibility}
-                  color={'white'}
+                  color={'#00baff'}
                   bg={'none'}
                 >
                   {showPassword ? <FaRegEye /> : <FaRegEyeSlash />}
@@ -96,10 +99,10 @@ export const RegisterPage = () => {
           </FormControl>
 
           <FormControl mb={4}>
-            <FormLabel color={'white'}>Repita sua senha</FormLabel>
+            <FormLabel color={'#00baff'}>Repita sua senha</FormLabel>
             <InputGroup size="md">
               <Input
-                color={'white'}
+                color={'#00baff'}
                 pr="4.5rem"
                 type={showPassword ? "text" : "password"}
                 placeholder="Sua senha"
@@ -110,9 +113,9 @@ export const RegisterPage = () => {
           </FormControl>
 
           <FormControl mb={4}>
-            <FormLabel color={'white'}>Bio</FormLabel>
+            <FormLabel color={'#00baff'}>Bio</FormLabel>
             <Input
-              color={'white'}
+              color={'#00baff'}
               placeholder="Conte um pouco sobre você"
               {...register("bio")}
             />
@@ -120,10 +123,10 @@ export const RegisterPage = () => {
           </FormControl>
 
           <FormControl mb={4}>
-            <FormLabel color={'white'}>Contato</FormLabel>
+            <FormLabel color={'#00baff'}>Contato</FormLabel>
             <InputGroup size="md">
               <Input
-                color={'white'}
+                color={'#00baff'}
                 placeholder="Seu contato"
                 {...register("contact", {
                   pattern: {
@@ -137,8 +140,8 @@ export const RegisterPage = () => {
           </FormControl>
 
           <FormControl mb={4}>
-            <FormLabel color={'white'}>Selecione o Módulo</FormLabel>
-            <Select color={'white'} placeholder="Selecione o módulo" {...register('course_module')}>
+            <FormLabel color={'#00baff'}>Selecione o Módulo</FormLabel>
+            <Select color={'#00baff'} placeholder="Selecione o módulo" {...register('course_module')}>
               <option style={{ background: '#212529' }} value="1º Módulo">1º Módulo</option>
               <option style={{ background: '#212529' }} value="2º Módulo">2º Módulo</option>
               <option style={{ background: '#212529' }} value="3º Módulo">3º Módulo</option>
